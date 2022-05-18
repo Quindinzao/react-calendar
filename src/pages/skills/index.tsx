@@ -9,7 +9,7 @@ const Buttons: React.FC = () => {
 	return (
 		<>
 			<Head>
-				<title>Animated Buttons</title>
+				<title>Skills</title>
 			</Head>
 			<Body />
 		</>

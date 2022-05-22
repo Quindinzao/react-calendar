@@ -1,5 +1,7 @@
 // External libraries
-import styled from 'styled-components'
+import styled, {
+	keyframes
+} from 'styled-components'
 
 // Styled
 import mq from '../../../styles/breakpoint'
@@ -8,17 +10,44 @@ interface ButtonMenuProps {
   isActive: boolean
 }
 
+const slideIn = keyframes`
+  from {
+    margin-left: 100%;
+    width: 100%
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+`
+
+const slideOut = keyframes`
+  from {
+    margin-left: 0%;
+    width: 100%
+  }
+
+  to {
+    margin-left: 100%;
+    width: 100%;
+  }
+`
+
 export const ContainerCalendar = styled.div<ButtonMenuProps>`
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 
   display: ${props => props.isActive ? 'flex' : 'none'};
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
   position: fixed;
   bottom: 72px;
+
+  animation: ${props => props.isActive ? slideIn : slideOut} 0.75s;
 
   .react-calendar {
     background-color: ${props => props.theme.colors.background_calendar};
@@ -102,21 +131,6 @@ export const ContainerCalendar = styled.div<ButtonMenuProps>`
       border-radius: 6px;
     }
   }
-
-  ${mq({
-		width: [
-			'100%',
-			'100%',
-			'fit-content',
-			'fit-content'
-		],
-		right: [
-			0,
-			0,
-			72,
-			72
-		]
-	})}
 `
 
 export const ButtonMenu = styled.button`
